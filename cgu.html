@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conditions Générales d'Utilisation de l'application Ascend – Maximize Your Looks.">
+  <title>CGU – Ascend</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #08080E;
+    --lime: #C8F135;
+    --lime-dim: rgba(200,241,53,0.10);
+    --lime-border: rgba(200,241,53,0.24);
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.55);
+    --muted: rgba(255,255,255,0.30);
+    --border: rgba(255,255,255,0.09);
+    --card: rgba(255,255,255,0.035);
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -220px; left: 50%; transform: translateX(-50%);
+    width: 760px; height: 760px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(8,8,14,0.86);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.04em; color: var(--text); text-decoration: none; }
+  .nav-logo span { color: var(--lime); }
+  .nav-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 700; color: var(--sub); text-decoration: none;
+  }
+  .nav-back:hover { color: var(--text); }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  .hero { padding: 56px 0 40px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 14px; border-radius: 999px;
+    background: var(--lime-dim); border: 1px solid var(--lime-border);
+    margin-bottom: 20px;
+  }
+  .hero-badge span { font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: .06em; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(28px, 5.5vw, 40px); font-weight: 950; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 12px; }
+  .hero p { font-size: 15px; color: var(--sub); max-width: 520px; line-height: 1.65; }
+  .hero .updated { margin-top: 18px; font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+  section.doc { padding-bottom: 64px; }
+
+  .art {
+    padding: 26px 0;
+    border-top: 1px solid var(--border);
+  }
+  .art:first-child { border-top: none; }
+  .art-num {
+    font-size: 10.5px; font-weight: 800; color: var(--lime);
+    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px;
+  }
+  .art h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 10px; }
+  .art p { font-size: 14.5px; color: var(--sub); line-height: 1.75; }
+  .art a { color: var(--lime); text-decoration: none; font-weight: 700; }
+  .art a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 24px 44px;
+    text-align: center; position: relative; z-index: 1;
+  }
+  .footer-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px; }
+  .footer-logo span { color: var(--lime); }
+  .footer-email a { font-size: 13px; color: var(--sub); text-decoration: none; font-weight: 600; }
+  .footer-email a:hover { color: var(--lime); }
+  .footer-copy { margin-top: 18px; font-size: 11px; color: var(--muted); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 0 32px; }
+  }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Ascend<span>.</span></a>
+  <a href="/" class="nav-back">← Support</a>
+</nav>
+
+<div class="hero wrap">
+  <div class="hero-badge">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+    <span>Conditions générales</span>
+  </div>
+  <h1>Conditions Générales d'Utilisation</h1>
+  <p>Les règles qui régissent l'accès et l'utilisation de l'application Ascend.</p>
+  <p class="updated">Dernière mise à jour : 24 juin 2026</p>
+</div>
+
+<div class="wrap">
+  <section class="doc">
+    <article class="art">
+      <p class="art-num">Article 1</p>
+      <h2>Objet</h2>
+      <p>Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation de l'application Ascend (ci-après « l'App »), éditée par Ascend SAS. En utilisant l'App, vous acceptez les présentes CGU sans réserve.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 2</p>
+      <h2>Description du service</h2>
+      <p>Ascend est une application de looksmaxing qui propose : une analyse faciale par intelligence artificielle, un programme de soins personnalisé, un chat avec un coach IA, et un suivi de progression personnelle.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 3</p>
+      <h2>Conditions d'accès</h2>
+      <p>L'App est réservée aux personnes majeures (18 ans ou plus). En créant un compte, vous attestez avoir l'âge requis. Ascend se réserve le droit de supprimer tout compte ne respectant pas cette condition.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 4</p>
+      <h2>Création de compte</h2>
+      <p>Vous devez créer un compte avec une adresse email valide. Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée depuis votre compte.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 5</p>
+      <h2>Utilisation acceptable</h2>
+      <p>Il est strictement interdit de : télécharger des photos de tiers sans leur consentement, utiliser l'App à des fins commerciales sans autorisation, tenter de contourner les mécanismes de sécurité, utiliser des robots ou scripts automatisés.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 6</p>
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble des contenus de l'App (algorithmes, textes, visuels, marque Ascend) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou utilisation sans autorisation est interdite.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 7</p>
+      <h2>Limitation de responsabilité</h2>
+      <p>L'analyse faciale fournie par l'App est indicative et ne constitue pas un avis médical ou dermatologique. Ascend ne saurait être tenu responsable des décisions prises sur la base des résultats de l'analyse. Les recommandations ne remplacent pas un avis professionnel de santé.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 8</p>
+      <h2>Modification des CGU</h2>
+      <p>Ascend se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront notifiés par email ou notification in-app. L'utilisation continue de l'App vaut acceptation des nouvelles conditions.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 9</p>
+      <h2>Résiliation</h2>
+      <p>Vous pouvez supprimer votre compte à tout moment depuis Paramètres → Supprimer mon compte. Ascend peut suspendre ou résilier un compte en cas de violation des présentes CGU.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Article 10</p>
+      <h2>Droit applicable</h2>
+      <p>Les présentes CGU sont soumises au droit français. Tout litige sera de la compétence exclusive des tribunaux français compétents.</p>
+    </article>
+
+    <article class="art">
+      <p class="art-num">Contact</p>
+      <h2>Une question ?</h2>
+      <p>Pour toute question relative aux CGU : <a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></p>
+    </article>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-logo">Ascend<span>.</span></div>
+  <div class="footer-email"><a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></div>
+  <div class="footer-copy">© 2026 Ascend SAS. Tous droits réservés.</div>
+</footer>
+
+</body>
+</html>
