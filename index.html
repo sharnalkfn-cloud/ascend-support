@@ -183,20 +183,6 @@
     .check b { display: block; font-size: 16px; margin-bottom: 2px; }
     .check span { font-size: 14px; color: var(--sub); }
 
-    .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 20px; }
-    .plan { position: relative; padding: 34px 30px; border-radius: 26px; background: var(--card); border: 1px solid var(--glass-border); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
-    .plan.best { border: 1.5px solid var(--lime); background: linear-gradient(170deg, rgba(200,241,53,0.09), rgba(255,255,255,0.02) 60%); box-shadow: 0 0 60px rgba(200,241,53,0.10); }
-    .plan .tag {
-      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: var(--lime); color: #08080E; font-size: 11.5px; font-weight: 800; padding: 5px 14px; border-radius: 999px; white-space: nowrap;
-    }
-    .plan h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--sub); margin-bottom: 14px; }
-    .price { font-size: 46px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
-    .price small { font-size: 16px; color: var(--sub); font-weight: 600; letter-spacing: 0; }
-    .plan .per { margin-top: 10px; font-size: 14px; color: var(--sub); }
-    .plan .per b { color: var(--lime); }
-    .fine { text-align: center; color: var(--muted); font-size: 13px; max-width: 620px; margin: 30px auto 0; }
-
     .final { text-align: center; padding: 130px 0; overflow: hidden; }
     .final::before {
       content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
@@ -248,7 +234,6 @@
       <ul class="nav-links">
         <li><a href="#how" data-en="How it works">Comment ça marche</a></li>
         <li><a href="#features" data-en="Features">Fonctionnalités</a></li>
-        <li><a href="#pricing" data-en="Pricing">Tarifs</a></li>
         <li><a href="/support">Support</a></li>
       </ul>
       <div class="lang" role="group" aria-label="Langue">
@@ -372,30 +357,6 @@
           <div><b data-en="GDPR compliant">Conforme RGPD</b><span><a href="/privacy" data-en="Read our privacy policy →">Lire la politique de confidentialité →</a></span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="pricing">
-    <div class="wrap">
-      <div class="head reveal">
-        <div class="label" data-en="Pricing">Tarifs</div>
-        <h2 data-en="One plan, <em>everything included</em>">Un abonnement, <em>tout inclus</em></h2>
-        <p data-en="Full access to analyses, the coach, the scanner and every program.">Accès complet aux analyses, au coach, au scanner et à tous les programmes.</p>
-      </div>
-      <div class="plans">
-        <div class="plan reveal">
-          <h3 data-en="Monthly">Mensuel</h3>
-          <div class="price">14,99€<small data-en=" /month"> /mois</small></div>
-          <p class="per" data-en="Cancel anytime">Sans engagement</p>
-        </div>
-        <div class="plan best reveal">
-          <div class="tag" data-en="BEST VALUE · -44%">MEILLEURE OFFRE · -44%</div>
-          <h3 data-en="Yearly">Annuel</h3>
-          <div class="price">99,99€<small data-en=" /year"> /an</small></div>
-          <p class="per" data-en="That's just <b>8,33€/month</b>">Soit seulement <b>8,33€/mois</b></p>
-        </div>
-      </div>
-      <p class="fine" data-en="Auto-renewable subscription, billed through your Apple ID. You can cancel at any time in your iPhone settings, at least 24 hours before renewal.">Abonnement renouvelé automatiquement, facturé via ton identifiant Apple. Tu peux l'annuler à tout moment dans les réglages de ton iPhone, au moins 24 h avant le renouvellement.</p>
     </div>
   </section>
 
