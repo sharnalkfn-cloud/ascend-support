@@ -5,143 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Politique de confidentialité RGPD de l'application Ascend – Maximize Your Looks.">
   <title>Politique de confidentialité – Ascend</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #08080E;
+    --bg: #0B0A13;
     --lime: #C8F135;
     --lime-dim: rgba(200,241,53,0.10);
-    --lime-border: rgba(200,241,53,0.24);
-    --text: #ffffff;
-    --sub: rgba(255,255,255,0.55);
-    --muted: rgba(255,255,255,0.30);
-    --border: rgba(255,255,255,0.09);
-    --card: rgba(255,255,255,0.035);
-    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+    --lime-border: rgba(200,241,53,0.28);
+    --purple: #A78BFA;
+    --text: #F5F6F0;
+    --sub: rgba(245,246,240,0.60);
+    --muted: rgba(245,246,240,0.32);
+    --border: rgba(255,255,255,0.08);
+    --card: rgba(36,33,56,0.55);
+    --glass-border: rgba(255,255,255,0.09);
+    --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color-scheme: dark;
   }
 
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100dvh;
+    background: var(--bg); color: var(--text); font-family: var(--font);
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100dvh;
+    position: relative;
   }
-
   body::before {
-    content: "";
-    position: fixed;
-    top: -220px; left: 50%; transform: translateX(-50%);
-    width: 760px; height: 760px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 65%);
-    pointer-events: none; z-index: 0;
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(60vw 45vh at 50% -5%, rgba(88,160,24,0.50), transparent 70%),
+      radial-gradient(45vw 55vh at 105% 35%, rgba(112,40,210,0.34), transparent 70%),
+      radial-gradient(45vw 55vh at -8% 62%, rgba(0,120,150,0.28), transparent 70%),
+      radial-gradient(40vw 40vh at 95% 105%, rgba(200,110,20,0.18), transparent 70%),
+      var(--bg);
   }
+  :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
 
-  nav.topnav {
-    position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(8,8,14,0.86);
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(14,13,24,0.55);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-    height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.04em; color: var(--text); text-decoration: none; }
-  .nav-logo span { color: var(--lime); }
-  .nav-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 700; color: var(--sub); text-decoration: none;
-  }
+  .topnav .bar { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: -0.03em; color: var(--text); }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  .nav-back { font-size: 14px; font-weight: 600; color: var(--sub); text-decoration: none; transition: color .2s; }
   .nav-back:hover { color: var(--text); }
 
-  .wrap { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; position: relative; }
 
-  .hero { padding: 56px 0 40px; }
+  .hero { padding-top: 72px; padding-bottom: 40px; }
   .hero-badge {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 6px 14px; border-radius: 999px;
-    background: var(--lime-dim); border: 1px solid var(--lime-border);
-    margin-bottom: 20px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+    background: var(--lime-dim); border: 1px solid var(--lime-border); margin-bottom: 22px;
   }
-  .hero-badge span { font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: .06em; text-transform: uppercase; }
-  .hero h1 { font-size: clamp(28px, 5.5vw, 40px); font-weight: 950; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 12px; }
-  .hero p { font-size: 15px; color: var(--sub); max-width: 520px; line-height: 1.65; }
-  .hero .updated { margin-top: 18px; font-size: 12.5px; color: var(--muted); font-weight: 600; }
+  .hero-badge span { font-size: 12px; font-weight: 700; color: var(--lime); letter-spacing: .05em; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 14px; text-wrap: balance; }
+  .hero p { font-size: 17px; color: var(--sub); max-width: 560px; line-height: 1.65; }
+  .hero .updated { margin-top: 18px; font-size: 13px; color: var(--muted); font-weight: 600; }
 
-  .toc {
-    margin: 8px 0 44px;
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
+  .toc { margin: 4px 0 36px; display: flex; flex-wrap: wrap; gap: 8px; }
   .toc a {
-    font-size: 12px; font-weight: 700; color: var(--sub);
-    background: var(--card); border: 1px solid var(--border);
-    padding: 7px 12px; border-radius: 999px; text-decoration: none;
+    font-size: 12.5px; font-weight: 700; color: var(--sub);
+    background: var(--card); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 8px 13px; border-radius: 999px; text-decoration: none;
     transition: border-color .18s, color .18s;
   }
   .toc a:hover { border-color: var(--lime-border); color: var(--lime); }
 
-  section.doc { padding-bottom: 64px; }
+  section.doc { padding-bottom: 72px; display: flex; flex-direction: column; gap: 14px; }
 
   .art {
-    padding: 26px 0;
-    border-top: 1px solid var(--border);
-    scroll-margin-top: 76px;
+    padding: 26px 26px 24px; border-radius: 22px;
+    background: var(--card); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+    scroll-margin-top: 90px;
   }
-  .art:first-child { border-top: none; }
   .art-num {
-    font-size: 10.5px; font-weight: 800; color: var(--lime);
-    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px;
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12px; font-weight: 800; color: var(--text);
+    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
   }
-  .art h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 10px; }
-  .art p, .art li { font-size: 14.5px; color: var(--sub); line-height: 1.75; }
+  .art-num::before { content: ""; width: 3px; height: 14px; border-radius: 3px; background: var(--purple); }
+  .art h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .art p, .art li { font-size: 15px; color: var(--sub); line-height: 1.75; }
   .art p + p { margin-top: 10px; }
   .art ul { list-style: none; margin-top: 4px; }
-  .art li { display: flex; gap: 8px; margin-bottom: 6px; }
+  .art li { display: flex; gap: 9px; margin-bottom: 6px; }
   .art li::before { content: "•"; color: var(--lime); flex-shrink: 0; }
   .art strong { color: var(--text); font-weight: 700; }
   .art a { color: var(--lime); text-decoration: none; font-weight: 700; }
   .art a:hover { text-decoration: underline; }
 
   .callout {
-    margin-top: 16px;
-    padding: 16px 18px;
-    background: var(--lime-dim);
-    border: 1px solid var(--lime-border);
-    border-radius: 14px;
-    font-size: 13.5px;
-    color: rgba(255,255,255,0.82);
-    line-height: 1.7;
+    margin-top: 16px; padding: 16px 18px;
+    background: var(--lime-dim); border: 1px solid var(--lime-border); border-radius: 16px;
+    font-size: 14px; color: rgba(245,246,240,0.85); line-height: 1.7;
   }
 
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 36px 24px 44px;
-    text-align: center; position: relative; z-index: 1;
-  }
-  .footer-logo { font-size: 18px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px; }
-  .footer-logo span { color: var(--lime); }
-  .footer-email a { font-size: 13px; color: var(--sub); text-decoration: none; font-weight: 600; }
-  .footer-email a:hover { color: var(--lime); }
-  .footer-copy { margin-top: 18px; font-size: 11px; color: var(--muted); }
+  footer { border-top: 1px solid var(--border); padding: 48px 24px 40px; }
+  .foot { max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; }
+  .foot .tagline { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; }
+  .foot-links a { text-decoration: none; font-size: 14px; color: var(--sub); }
+  .foot-links a:hover { color: var(--text); }
+  .copy { max-width: 1160px; margin: 32px auto 0; padding-top: 22px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted); }
 
   @media (max-width: 600px) {
-    .hero { padding: 40px 0 32px; }
+    .hero { padding-top: 48px; padding-bottom: 28px; }
+    .art { padding: 22px 20px; }
   }
   </style>
 </head>
 <body>
 
-<nav class="topnav">
-  <a href="/" class="nav-logo">Ascend<span>.</span></a>
-  <a href="/support" class="nav-back">← Support</a>
-</nav>
+<header class="topnav">
+  <div class="bar">
+    <a href="/" class="brand"><img src="/images/logo.png" alt="">Ascend</a>
+    <a href="/support" class="nav-back">← Support</a>
+  </div>
+</header>
 
 <div class="hero wrap">
   <div class="hero-badge">
@@ -272,9 +261,21 @@
 </div>
 
 <footer>
-  <div class="footer-logo">Ascend<span>.</span></div>
-  <div class="footer-email"><a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></div>
-  <div class="footer-copy">© 2026 Ascend SAS. Tous droits réservés.</div>
+  <div class="foot">
+    <div>
+      <a href="/" class="brand"><img src="/images/logo.png" alt="">Ascend</a>
+      <p class="tagline">Maximize your looks.</p>
+    </div>
+    <ul class="foot-links">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/support">Support</a></li>
+      <li><a href="/privacy">Politique de confidentialité</a></li>
+      <li><a href="/cgu">CGU</a></li>
+      <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">EULA</a></li>
+      <li><a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></li>
+    </ul>
+  </div>
+  <p class="copy">© 2026 Ascend. Tous droits réservés.</p>
 </footer>
 
 </body>
