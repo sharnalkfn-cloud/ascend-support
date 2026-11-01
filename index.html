@@ -18,8 +18,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #08080E;
-      --bg-2: #0D0E15;
+      --bg: #0B0A13;
+      --purple: #A78BFA;
+      --glass: rgba(36,33,56,0.55);
+      --glass-border: rgba(255,255,255,0.09);
       --lime: #C8F135;
       --lime-dim: rgba(200,241,53,0.10);
       --lime-border: rgba(200,241,53,0.28);
@@ -27,7 +29,7 @@
       --sub: rgba(245,246,240,0.56);
       --muted: rgba(245,246,240,0.30);
       --border: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.035);
+      --card: var(--glass);
       --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
       --radius: 22px;
       color-scheme: dark;
@@ -36,6 +38,7 @@
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
+      position: relative;
       color: var(--text);
       font-family: var(--font);
       font-size: 16px;
@@ -44,6 +47,15 @@
       overflow-x: hidden;
     }
     a { color: inherit; }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(60vw 45vh at 50% -5%, rgba(88,160,24,0.55), transparent 70%),
+        radial-gradient(45vw 55vh at 105% 35%, rgba(112,40,210,0.38), transparent 70%),
+        radial-gradient(45vw 55vh at -8% 62%, rgba(0,120,150,0.32), transparent 70%),
+        radial-gradient(40vw 40vh at 95% 105%, rgba(200,110,20,0.20), transparent 70%),
+        var(--bg);
+    }
     img { max-width: 100%; display: block; }
     :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
 
@@ -52,7 +64,7 @@
     .topnav {
       position: sticky; top: 0; z-index: 50;
       padding-top: env(safe-area-inset-top, 0px);
-      background: rgba(8,8,14,0.78);
+      background: rgba(14,13,24,0.55);
       backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
     }
@@ -73,7 +85,7 @@
     .lang button[aria-pressed="true"] { background: var(--lime); color: #08080E; }
 
     .hero { position: relative; padding: 96px 0 110px; }
-    .hero::before {
+    .hero::before { display: none;
       content: ""; position: absolute; inset: -120px 0 auto; height: 760px; pointer-events: none;
       background:
         radial-gradient(520px 380px at 78% 38%, rgba(200,241,53,0.13), transparent 70%),
@@ -108,59 +120,24 @@
     .btn span { line-height: 1.1; }
     .cta-note { font-size: 13px; color: var(--muted); }
 
-    .phone {
-      position: relative; width: min(330px, 100%); margin: 0 auto; aspect-ratio: 9 / 18.5;
-      border-radius: 48px; padding: 12px;
-      background: linear-gradient(160deg, #1b1d26, #0b0c12);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 40px 90px rgba(0,0,0,0.6), 0 0 80px rgba(200,241,53,0.10);
+    .shot {
+      width: min(340px, 100%); height: auto; margin: 0 auto; border-radius: 52px;
+      filter: drop-shadow(0 40px 70px rgba(0,0,0,0.55)) drop-shadow(0 0 60px rgba(120,200,40,0.18));
     }
-    .screen {
-      position: relative; height: 100%; border-radius: 38px; overflow: hidden;
-      background: radial-gradient(120% 70% at 50% 0%, #15181f 0%, #08080E 70%);
-      padding: 46px 18px 18px; display: flex; flex-direction: column; gap: 14px;
-    }
-    .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 20px; background: #000; }
-    .scan {
-      position: relative; height: 46%; border-radius: 24px; overflow: hidden;
-      background: radial-gradient(60% 60% at 50% 45%, #1a1e27, #0c0d13);
-      display: grid; place-items: center;
-    }
-    .scan svg.face { width: 46%; height: auto; opacity: .9; }
-    .corner { position: absolute; width: 26px; height: 26px; border: 3px solid var(--lime); filter: drop-shadow(0 0 6px var(--lime)); }
-    .c1 { top: 14px; left: 14px; border-right: 0; border-bottom: 0; border-top-left-radius: 10px; }
-    .c2 { top: 14px; right: 14px; border-left: 0; border-bottom: 0; border-top-right-radius: 10px; }
-    .c3 { bottom: 14px; left: 14px; border-right: 0; border-top: 0; border-bottom-left-radius: 10px; }
-    .c4 { bottom: 14px; right: 14px; border-left: 0; border-top: 0; border-bottom-right-radius: 10px; }
-    .beam {
-      position: absolute; left: 10%; right: 10%; height: 2px; top: 20%;
-      background: var(--lime); box-shadow: 0 0 14px 2px var(--lime);
-      animation: sweep 3.2s ease-in-out infinite;
-    }
-    @keyframes sweep { 0%,100% { top: 20%; } 50% { top: 78%; } }
-    .score-card {
-      border-radius: 20px; padding: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-    }
-    .score-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
-    .score-top b { font-size: 34px; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-    .score-top b small { font-size: 14px; color: var(--muted); font-weight: 700; }
-    .score-top span { font-size: 11px; font-weight: 700; color: var(--lime); background: var(--lime-dim); padding: 4px 9px; border-radius: 999px; }
-    .bar { display: grid; grid-template-columns: 68px 1fr 24px; align-items: center; gap: 8px; font-size: 11.5px; color: var(--sub); margin-top: 7px; }
-    .bar i { height: 5px; border-radius: 9px; background: rgba(255,255,255,0.07); position: relative; overflow: hidden; }
-    .bar i::after { content: ""; position: absolute; inset: 0; width: var(--w); border-radius: 9px; background: var(--lime); }
-    .bar em { font-style: normal; text-align: right; color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
     .float-tag {
       position: absolute; right: -34px; top: 26%;
       padding: 10px 14px; border-radius: 14px; font-size: 12.5px; font-weight: 700;
-      background: rgba(13,14,21,0.92); border: 1px solid var(--lime-border);
+      background: rgba(36,33,56,0.75); border: 1px solid var(--glass-border); backdrop-filter: blur(16px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
     }
     .float-tag b { color: var(--lime); }
     .float-tag.two { right: auto; left: -40px; top: 62%; border-color: var(--border); }
 
     section { padding: 110px 0; position: relative; }
-    .alt { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .alt { background: transparent; }
     .head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
-    .label { font-size: 12px; font-weight: 800; color: var(--lime); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 14px; }
+    .label { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; color: var(--text); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .label::before { content: ""; width: 3px; height: 16px; border-radius: 3px; background: var(--purple); }
     h2 { font-size: clamp(32px, 4.6vw, 50px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; text-wrap: balance; }
     h2 em { font-style: normal; color: var(--lime); }
     .nowrap { white-space: nowrap; }
@@ -168,7 +145,7 @@
 
     .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: step; }
     .step {
-      padding: 28px 24px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border);
+      padding: 28px 24px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--glass-border); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       position: relative;
     }
     .step::before {
@@ -182,7 +159,7 @@
 
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .feature {
-      padding: 30px 26px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border);
+      padding: 30px 26px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--glass-border); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       transition: border-color .25s, transform .25s;
     }
     .feature:hover { border-color: var(--lime-border); transform: translateY(-3px); }
@@ -200,14 +177,14 @@
     .checks { display: grid; gap: 14px; }
     .check {
       display: flex; gap: 16px; align-items: flex-start; padding: 20px 22px; border-radius: 18px;
-      background: var(--card); border: 1px solid var(--border);
+      background: var(--card); border: 1px solid var(--glass-border); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
     }
     .check svg { flex-shrink: 0; width: 22px; height: 22px; color: var(--lime); margin-top: 2px; }
     .check b { display: block; font-size: 16px; margin-bottom: 2px; }
     .check span { font-size: 14px; color: var(--sub); }
 
     .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 20px; }
-    .plan { position: relative; padding: 34px 30px; border-radius: 26px; background: var(--card); border: 1px solid var(--border); }
+    .plan { position: relative; padding: 34px 30px; border-radius: 26px; background: var(--card); border: 1px solid var(--glass-border); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
     .plan.best { border: 1.5px solid var(--lime); background: linear-gradient(170deg, rgba(200,241,53,0.09), rgba(255,255,255,0.02) 60%); box-shadow: 0 0 60px rgba(200,241,53,0.10); }
     .plan .tag {
       position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
@@ -299,33 +276,7 @@
       </div>
 
       <div style="position:relative">
-        <div class="phone" aria-label="Aperçu de l'app Ascend" role="img">
-          <div class="screen">
-            <div class="notch"></div>
-            <div class="scan">
-              <span class="corner c1"></span><span class="corner c2"></span>
-              <span class="corner c3"></span><span class="corner c4"></span>
-              <svg class="face" viewBox="0 0 100 120" fill="none" stroke="#F5F6F0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M24 46c-2-20 10-34 28-34 16 0 27 11 26 28"/>
-                <path d="M24 46c-3-6 2-14 8-14 4-8 14-12 22-8 6-6 18-2 20 8 4 0 6 6 4 12"/>
-                <path d="M24 48c0 26 12 46 26 46s26-20 26-46"/>
-                <path d="M38 100v12M62 100v12"/>
-              </svg>
-              <span class="beam"></span>
-            </div>
-            <div class="score-card">
-              <div class="score-top">
-                <b>74<small>/100</small></b>
-                <span data-en="Potential 91">Potentiel 91</span>
-              </div>
-              <div class="bar"><span data-en="Skin">Peau</span><i style="--w:78%"></i><em>78</em></div>
-              <div class="bar"><span data-en="Harmony">Harmonie</span><i style="--w:72%"></i><em>72</em></div>
-              <div class="bar"><span data-en="Jawline">Mâchoire</span><i style="--w:65%"></i><em>65</em></div>
-              <div class="bar"><span data-en="Eyes">Regard</span><i style="--w:80%"></i><em>80</em></div>
-              <div class="bar"><span>Texture</span><i style="--w:70%"></i><em>70</em></div>
-            </div>
-          </div>
-        </div>
+        <img class="shot" src="/images/app-analysis.png" width="890" height="1885" alt="Écran d’analyse de l’app Ascend : score 92/100 et détail des 6 critères">
         <div class="float-tag" data-en="Routine done <b>✓</b>">Routine du jour <b>✓</b></div>
         <div class="float-tag two" data-en="🔥 <b>7-day</b> streak">🔥 Série de <b>7 jours</b></div>
       </div>
