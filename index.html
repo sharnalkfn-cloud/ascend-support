@@ -2,29 +2,38 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Support officiel pour l'application Ascend – Maximize Your Looks. Une question ? Notre équipe est disponible.">
-  <title>Support – Ascend</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ascend – Révèle ton vrai potentiel</title>
+  <meta name="description" content="Ascend analyse ton visage avec l'IA, te donne un score détaillé et un plan personnalisé (skincare, exercices, coach) pour progresser semaine après semaine.">
+  <meta property="og:title" content="Ascend – Révèle ton vrai potentiel">
+  <meta property="og:description" content="Analyse faciale IA, plan personnalisé et coach 24/7.">
+  <meta property="og:image" content="/images/logo.png">
+  <meta name="theme-color" content="#08080E">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #08080E;
+      --bg-2: #0D0E15;
       --lime: #C8F135;
-      --lime-dim: rgba(200,241,53,0.12);
-      --lime-border: rgba(200,241,53,0.25);
-      --text: #ffffff;
-      --sub: rgba(255,255,255,0.48);
-      --muted: rgba(255,255,255,0.22);
+      --lime-dim: rgba(200,241,53,0.10);
+      --lime-border: rgba(200,241,53,0.28);
+      --text: #F5F6F0;
+      --sub: rgba(245,246,240,0.56);
+      --muted: rgba(245,246,240,0.30);
       --border: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.04);
-      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-      --radius: 18px;
+      --card: rgba(255,255,255,0.035);
+      --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --radius: 22px;
+      color-scheme: dark;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -32,307 +41,477 @@
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      min-height: 100dvh;
+      overflow-x: hidden;
     }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: -200px; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,241,53,0.07) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-    }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(8,8,14,0.82);
+    .topnav {
+      position: sticky; top: 0; z-index: 50;
+      padding-top: env(safe-area-inset-top, 0px);
+      background: rgba(8,8,14,0.78);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo {
-      font-size: 18px; font-weight: 900; letter-spacing: -0.04em; color: var(--text);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--lime); }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; font-weight: 600; color: var(--sub);
-      text-decoration: none; transition: color .2s;
-    }
+    .topnav .wrap { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: -0.03em; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-links { display: flex; gap: 26px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 14px; font-weight: 600; color: var(--sub); transition: color .2s; }
     .nav-links a:hover { color: var(--text); }
+    .lang {
+      display: flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px;
+    }
+    .lang button {
+      background: none; border: 0; color: var(--sub); font: 700 12px var(--font);
+      padding: 5px 10px; border-radius: 999px; cursor: pointer; letter-spacing: .04em;
+    }
+    .lang button[aria-pressed="true"] { background: var(--lime); color: #08080E; }
 
-    /* LAYOUT */
-    .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-
-    /* HERO */
-    .hero { text-align: center; padding: 80px 24px 64px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 7px;
+    .hero { position: relative; padding: 96px 0 110px; }
+    .hero::before {
+      content: ""; position: absolute; inset: -120px 0 auto; height: 760px; pointer-events: none;
+      background:
+        radial-gradient(520px 380px at 78% 38%, rgba(200,241,53,0.13), transparent 70%),
+        radial-gradient(600px 400px at 10% 10%, rgba(200,241,53,0.05), transparent 70%);
+    }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
       padding: 6px 14px; border-radius: 999px;
       background: var(--lime-dim); border: 1px solid var(--lime-border);
-      margin-bottom: 22px;
+      font-size: 12px; font-weight: 700; color: var(--lime); letter-spacing: .05em; text-transform: uppercase;
+      margin-bottom: 26px;
     }
-    .hero-badge span { font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: .06em; text-transform: uppercase; }
-    .hero h1 {
-      font-size: clamp(32px, 6vw, 48px);
-      font-weight: 950; letter-spacing: -0.04em; line-height: 1.05;
-      margin-bottom: 16px;
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+    h1 {
+      font-size: clamp(42px, 6.4vw, 76px); font-weight: 800; line-height: 1.02; letter-spacing: -0.045em;
+      text-wrap: balance; margin-bottom: 24px;
     }
-    .hero h1 em { font-style: normal; color: var(--lime); }
-    .hero p { font-size: 16px; color: var(--sub); max-width: 460px; margin: 0 auto 36px; line-height: 1.65; }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 14px 26px; border-radius: 14px;
-      background: var(--lime); color: #08080E;
-      font-size: 14px; font-weight: 800; letter-spacing: -0.01em;
-      text-decoration: none;
-      box-shadow: 0 12px 32px rgba(200,241,53,0.28);
+    h1 em { font-style: normal; color: var(--lime); text-shadow: 0 0 40px rgba(200,241,53,0.35); }
+    .lead { font-size: 18px; color: var(--sub); max-width: 520px; margin-bottom: 38px; }
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 15px 26px; border-radius: 16px; text-decoration: none;
+      font-weight: 800; font-size: 15px; letter-spacing: -0.01em;
       transition: transform .18s, box-shadow .18s;
     }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(200,241,53,0.38); }
+    .btn-lime { background: var(--lime); color: #08080E; box-shadow: 0 14px 40px rgba(200,241,53,0.28); }
+    .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(200,241,53,0.38); }
+    .btn svg { width: 20px; height: 20px; }
+    .btn small { display: block; font-size: 10.5px; font-weight: 600; opacity: .7; line-height: 1; margin-bottom: 3px; }
+    .btn span { line-height: 1.1; }
+    .cta-note { font-size: 13px; color: var(--muted); }
 
-    /* SECTIONS */
-    section { padding: 56px 0; border-top: 1px solid var(--border); }
-    .section-label {
-      font-size: 10.5px; font-weight: 800; color: var(--lime);
-      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
+    .phone {
+      position: relative; width: min(330px, 100%); margin: 0 auto; aspect-ratio: 9 / 18.5;
+      border-radius: 48px; padding: 12px;
+      background: linear-gradient(160deg, #1b1d26, #0b0c12);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 40px 90px rgba(0,0,0,0.6), 0 0 80px rgba(200,241,53,0.10);
     }
-    .section-title {
-      font-size: clamp(22px, 4vw, 28px); font-weight: 850;
-      letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.15;
+    .screen {
+      position: relative; height: 100%; border-radius: 38px; overflow: hidden;
+      background: radial-gradient(120% 70% at 50% 0%, #15181f 0%, #08080E 70%);
+      padding: 46px 18px 18px; display: flex; flex-direction: column; gap: 14px;
     }
-    .section-body { font-size: 15px; color: var(--sub); line-height: 1.7; }
+    .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 20px; background: #000; }
+    .scan {
+      position: relative; height: 46%; border-radius: 24px; overflow: hidden;
+      background: radial-gradient(60% 60% at 50% 45%, #1a1e27, #0c0d13);
+      display: grid; place-items: center;
+    }
+    .scan svg.face { width: 46%; height: auto; opacity: .9; }
+    .corner { position: absolute; width: 26px; height: 26px; border: 3px solid var(--lime); filter: drop-shadow(0 0 6px var(--lime)); }
+    .c1 { top: 14px; left: 14px; border-right: 0; border-bottom: 0; border-top-left-radius: 10px; }
+    .c2 { top: 14px; right: 14px; border-left: 0; border-bottom: 0; border-top-right-radius: 10px; }
+    .c3 { bottom: 14px; left: 14px; border-right: 0; border-top: 0; border-bottom-left-radius: 10px; }
+    .c4 { bottom: 14px; right: 14px; border-left: 0; border-top: 0; border-bottom-right-radius: 10px; }
+    .beam {
+      position: absolute; left: 10%; right: 10%; height: 2px; top: 20%;
+      background: var(--lime); box-shadow: 0 0 14px 2px var(--lime);
+      animation: sweep 3.2s ease-in-out infinite;
+    }
+    @keyframes sweep { 0%,100% { top: 20%; } 50% { top: 78%; } }
+    .score-card {
+      border-radius: 20px; padding: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    }
+    .score-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+    .score-top b { font-size: 34px; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+    .score-top b small { font-size: 14px; color: var(--muted); font-weight: 700; }
+    .score-top span { font-size: 11px; font-weight: 700; color: var(--lime); background: var(--lime-dim); padding: 4px 9px; border-radius: 999px; }
+    .bar { display: grid; grid-template-columns: 68px 1fr 24px; align-items: center; gap: 8px; font-size: 11.5px; color: var(--sub); margin-top: 7px; }
+    .bar i { height: 5px; border-radius: 9px; background: rgba(255,255,255,0.07); position: relative; overflow: hidden; }
+    .bar i::after { content: ""; position: absolute; inset: 0; width: var(--w); border-radius: 9px; background: var(--lime); }
+    .bar em { font-style: normal; text-align: right; color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .float-tag {
+      position: absolute; right: -34px; top: 26%;
+      padding: 10px 14px; border-radius: 14px; font-size: 12.5px; font-weight: 700;
+      background: rgba(13,14,21,0.92); border: 1px solid var(--lime-border);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+    }
+    .float-tag b { color: var(--lime); }
+    .float-tag.two { right: auto; left: -40px; top: 62%; border-color: var(--border); }
 
-    /* CONTACT CARD */
-    .contact-card {
-      margin-top: 28px;
-      display: flex; align-items: center; gap: 18px;
-      padding: 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color .2s;
-      text-decoration: none;
-    }
-    .contact-card:hover { border-color: rgba(200,241,53,0.3); }
-    .contact-icon {
-      width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
-      background: var(--lime-dim); border: 1px solid var(--lime-border);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .contact-card h3 { font-size: 13px; font-weight: 700; color: var(--sub); margin-bottom: 4px; }
-    .contact-card p { font-size: 15px; font-weight: 700; color: var(--lime); }
+    section { padding: 110px 0; position: relative; }
+    .alt { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+    .label { font-size: 12px; font-weight: 800; color: var(--lime); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 14px; }
+    h2 { font-size: clamp(32px, 4.6vw, 50px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; text-wrap: balance; }
+    h2 em { font-style: normal; color: var(--lime); }
+    .nowrap { white-space: nowrap; }
+    .head p { color: var(--sub); font-size: 17px; margin-top: 16px; }
 
-    /* FAQ */
-    .faq-list { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
-    .faq-item {
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: step; }
+    .step {
+      padding: 28px 24px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border);
+      position: relative;
+    }
+    .step::before {
+      counter-increment: step; content: counter(step, decimal-leading-zero);
+      display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--lime-border); color: var(--lime); font-weight: 800; font-size: 15px; margin-bottom: 26px;
+      background: var(--lime-dim);
+    }
+    .step h3 { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .step p { font-size: 14.5px; color: var(--sub); }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature {
+      padding: 30px 26px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border);
+      transition: border-color .25s, transform .25s;
+    }
+    .feature:hover { border-color: var(--lime-border); transform: translateY(-3px); }
+    .ico {
+      width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; margin-bottom: 22px;
+      background: var(--lime-dim); border: 1px solid var(--lime-border); color: var(--lime);
+    }
+    .ico svg { width: 24px; height: 24px; }
+    .feature h3 { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .feature p { font-size: 14.5px; color: var(--sub); }
+
+    .privacy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .privacy h2 { text-align: left; }
+    .privacy .intro { color: var(--sub); font-size: 17px; margin-top: 18px; }
+    .checks { display: grid; gap: 14px; }
+    .check {
+      display: flex; gap: 16px; align-items: flex-start; padding: 20px 22px; border-radius: 18px;
       background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: border-color .2s;
     }
-    .faq-item.open { border-color: rgba(200,241,53,0.22); }
-    .faq-trigger {
-      width: 100%; background: none; border: none; cursor: pointer;
-      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      font-family: var(--font); text-align: left;
-    }
-    .faq-trigger-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
-    .faq-chevron {
-      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
-      background: rgba(255,255,255,0.06);
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s, transform .28s cubic-bezier(.16,1,.3,1);
-    }
-    .faq-item.open .faq-chevron { background: var(--lime-dim); transform: rotate(180deg); }
-    .faq-body { max-height: 0; overflow: hidden; transition: max-height .38s cubic-bezier(.16,1,.3,1); }
-    .faq-body-inner { padding: 0 20px 18px; font-size: 14px; color: var(--sub); line-height: 1.7; }
-    .faq-body-inner a { color: var(--lime); text-decoration: none; font-weight: 700; }
+    .check svg { flex-shrink: 0; width: 22px; height: 22px; color: var(--lime); margin-top: 2px; }
+    .check b { display: block; font-size: 16px; margin-bottom: 2px; }
+    .check span { font-size: 14px; color: var(--sub); }
 
-    /* ABOUT */
-    .about-card {
-      margin-top: 28px; padding: 28px;
-      background: linear-gradient(135deg, rgba(200,241,53,0.06) 0%, rgba(255,255,255,0.02) 100%);
-      border: 1px solid var(--lime-border); border-radius: var(--radius);
-      position: relative; overflow: hidden;
+    .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 20px; }
+    .plan { position: relative; padding: 34px 30px; border-radius: 26px; background: var(--card); border: 1px solid var(--border); }
+    .plan.best { border: 1.5px solid var(--lime); background: linear-gradient(170deg, rgba(200,241,53,0.09), rgba(255,255,255,0.02) 60%); box-shadow: 0 0 60px rgba(200,241,53,0.10); }
+    .plan .tag {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--lime); color: #08080E; font-size: 11.5px; font-weight: 800; padding: 5px 14px; border-radius: 999px; white-space: nowrap;
     }
-    .about-card::before {
-      content: "A";
-      position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
-      font-size: 120px; font-weight: 950; color: rgba(200,241,53,0.06);
-      letter-spacing: -0.06em; pointer-events: none; line-height: 1;
+    .plan h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--sub); margin-bottom: 14px; }
+    .price { font-size: 46px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .price small { font-size: 16px; color: var(--sub); font-weight: 600; letter-spacing: 0; }
+    .plan .per { margin-top: 10px; font-size: 14px; color: var(--sub); }
+    .plan .per b { color: var(--lime); }
+    .fine { text-align: center; color: var(--muted); font-size: 13px; max-width: 620px; margin: 30px auto 0; }
+
+    .final { text-align: center; padding: 130px 0; overflow: hidden; }
+    .final::before {
+      content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      width: 820px; height: 520px; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(200,241,53,0.14), transparent);
     }
-    .about-card p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.75; max-width: 500px; position: relative; }
+    .final .wrap { position: relative; }
+    .final p { color: var(--sub); font-size: 18px; margin: 18px auto 40px; max-width: 520px; }
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center; position: relative; z-index: 1;
+    footer { border-top: 1px solid var(--border); padding: 54px 0 calc(40px + env(safe-area-inset-bottom, 0px)); }
+    .foot { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 28px; }
+    .foot .tagline { color: var(--muted); font-size: 14px; margin-top: 12px; }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; }
+    .foot-links a { text-decoration: none; font-size: 14px; color: var(--sub); }
+    .foot-links a:hover { color: var(--text); }
+    .copy { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 960px) {
+      .hero .wrap, .privacy { grid-template-columns: 1fr; }
+      .hero { padding-top: 64px; text-align: center; }
+      .lead { margin-left: auto; margin-right: auto; }
+      .cta-row { justify-content: center; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .float-tag { right: -8px; } .float-tag.two { left: -8px; }
     }
-    .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px; }
-    .footer-logo span { color: var(--lime); }
-    .footer-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
-    .footer-email a { font-size: 13px; color: var(--sub); text-decoration: none; font-weight: 600; }
-    .footer-email a:hover { color: var(--lime); }
-    .footer-copy { margin-top: 24px; font-size: 11px; color: var(--muted); }
-
-    /* ANIMATIONS */
-    .fade { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
-    .fade.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hero { padding: 60px 0 48px; }
+    @media (max-width: 640px) {
+      .nav-links, .float-tag { display: none; }
+      .steps, .features, .plans { grid-template-columns: 1fr; }
+      section { padding: 80px 0; }
+      .wrap { padding: 0 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .beam { animation: none; top: 50%; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .feature { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Ascend<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#about">À propos</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <div class="hero wrap">
-    <div class="hero-badge fade">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="2.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span>Support officiel</span>
-    </div>
-    <h1 class="fade">Support<br><em>Ascend</em></h1>
-    <p class="fade">Une question ? Nous sommes là pour vous aider.</p>
-    <a href="mailto:ascend.app.off@gmail.com" class="hero-cta fade">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#08080E" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-      Nous contacter
-    </a>
-  </div>
-
+<header class="topnav">
   <div class="wrap">
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <p class="section-label fade">Assistance</p>
-      <h2 class="section-title fade">Besoin d'aide ?</h2>
-      <p class="section-body fade">Si vous avez une question concernant Ascend, votre compte, votre abonnement ou une fonctionnalité de l'application, notre équipe est disponible pour vous répondre.</p>
-      <a href="mailto:ascend.app.off@gmail.com" class="contact-card fade">
-        <div class="contact-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-        </div>
-        <div>
-          <h3>Email support</h3>
-          <p>ascend.app.off@gmail.com</p>
-        </div>
-      </a>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <p class="section-label fade">Questions fréquentes</p>
-      <h2 class="section-title fade">Ce qu'on nous demande souvent</h2>
-      <div class="faq-list">
-
-        <div class="faq-item fade">
-          <button class="faq-trigger" aria-expanded="false">
-            <span class="faq-trigger-text">Comment fonctionne l'analyse du visage ?</span>
-            <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner">Ascend utilise l'intelligence artificielle pour analyser certains aspects visuels du visage et proposer des recommandations personnalisées adaptées à votre profil.</div></div>
-        </div>
-
-        <div class="faq-item fade">
-          <button class="faq-trigger" aria-expanded="false">
-            <span class="faq-trigger-text">Comment gérer mon abonnement ?</span>
-            <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner">Les abonnements sont gérés directement depuis votre compte Apple dans les réglages de votre appareil. Rendez-vous dans Réglages → [votre nom] → Abonnements pour modifier ou annuler votre abonnement à tout moment.</div></div>
-        </div>
-
-        <div class="faq-item fade">
-          <button class="faq-trigger" aria-expanded="false">
-            <span class="faq-trigger-text">Comment supprimer mon compte ?</span>
-            <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner">Vous pouvez demander la suppression de votre compte et de vos données en contactant notre équipe support à l'adresse <a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a>. Nous traiterons votre demande dans les plus brefs délais.</div></div>
-        </div>
-
-        <div class="faq-item fade">
-          <button class="faq-trigger" aria-expanded="false">
-            <span class="faq-trigger-text">Mes données sont-elles protégées ?</span>
-            <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner">La protection de vos données est notre priorité. Les données utilisateurs sont traitées conformément à notre politique de confidentialité et aux exigences du RGPD. Vos photos ne sont jamais partagées avec des tiers.</div></div>
-        </div>
-
+    <a href="/" class="brand"><img src="/images/logo.png" alt="">Ascend</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#how" data-en="How it works">Comment ça marche</a></li>
+        <li><a href="#features" data-en="Features">Fonctionnalités</a></li>
+        <li><a href="#pricing" data-en="Pricing">Tarifs</a></li>
+        <li><a href="/support">Support</a></li>
+      </ul>
+      <div class="lang" role="group" aria-label="Langue">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <p class="section-label fade">À propos</p>
-      <h2 class="section-title fade">Ascend – Maximize Your Looks</h2>
-      <div class="about-card fade">
-        <p>Ascend aide les utilisateurs à développer de meilleures habitudes et à optimiser leur apparence grâce à des recommandations personnalisées basées sur l'intelligence artificielle.</p>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Ascend<span>.</span></div>
-    <div class="footer-sub">Maximize Your Looks</div>
-    <div class="footer-email"><a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></div>
-    <div class="footer-copy">
-      <a href="/privacy" style="color:inherit;text-decoration:none;">Politique de confidentialité</a>
-      &nbsp;·&nbsp;
-      <a href="/cgu" style="color:inherit;text-decoration:none;">CGU</a>
-      &nbsp;·&nbsp;
-      © 2026 Ascend. Tous droits réservés.
     </div>
-  </footer>
+  </div>
+</header>
 
-  <script>
-    // FAQ accordions
-    document.querySelectorAll('.faq-trigger').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const body = item.querySelector('.faq-body');
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.faq-body').style.maxHeight = '0';
-          i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          body.style.maxHeight = body.scrollHeight + 'px';
-          btn.setAttribute('aria-expanded', 'true');
-        }
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><i></i><span data-en="AI facial analysis">Analyse faciale par IA</span></div>
+        <h1 data-en="Unlock your <em>real potential.</em>">Révèle ton <em>vrai potentiel.</em></h1>
+        <p class="lead" data-en="Ascend scans your face, gives you a detailed score across 6 criteria, and builds a personal plan — skincare, exercises and a 24/7 coach — to level up week after week.">Ascend analyse ton visage, te donne un score détaillé sur 6 critères et te construit un plan perso — skincare, exercices et coach 24/7 — pour progresser semaine après semaine.</p>
+        <div class="cta-row">
+          <a class="btn btn-lime" href="https://apps.apple.com/app/id6790447887">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.59.68-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>
+            <span><small data-en="Download on the">Télécharger sur l'</small>App Store</span>
+          </a>
+          <span class="cta-note" data-en="Free download · Analysis in 30 seconds">Téléchargement gratuit · Analyse en 30 secondes</span>
+        </div>
+      </div>
+
+      <div style="position:relative">
+        <div class="phone" aria-label="Aperçu de l'app Ascend" role="img">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="scan">
+              <span class="corner c1"></span><span class="corner c2"></span>
+              <span class="corner c3"></span><span class="corner c4"></span>
+              <svg class="face" viewBox="0 0 100 120" fill="none" stroke="#F5F6F0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M24 46c-2-20 10-34 28-34 16 0 27 11 26 28"/>
+                <path d="M24 46c-3-6 2-14 8-14 4-8 14-12 22-8 6-6 18-2 20 8 4 0 6 6 4 12"/>
+                <path d="M24 48c0 26 12 46 26 46s26-20 26-46"/>
+                <path d="M38 100v12M62 100v12"/>
+              </svg>
+              <span class="beam"></span>
+            </div>
+            <div class="score-card">
+              <div class="score-top">
+                <b>74<small>/100</small></b>
+                <span data-en="Potential 91">Potentiel 91</span>
+              </div>
+              <div class="bar"><span data-en="Skin">Peau</span><i style="--w:78%"></i><em>78</em></div>
+              <div class="bar"><span data-en="Harmony">Harmonie</span><i style="--w:72%"></i><em>72</em></div>
+              <div class="bar"><span data-en="Jawline">Mâchoire</span><i style="--w:65%"></i><em>65</em></div>
+              <div class="bar"><span data-en="Eyes">Regard</span><i style="--w:80%"></i><em>80</em></div>
+              <div class="bar"><span>Texture</span><i style="--w:70%"></i><em>70</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-tag" data-en="Routine done <b>✓</b>">Routine du jour <b>✓</b></div>
+        <div class="float-tag two" data-en="🔥 <b>7-day</b> streak">🔥 Série de <b>7 jours</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="label" data-en="How it works">Comment ça marche</div>
+        <h2 data-en="From scan to <em class='nowrap'>glow-up</em> in 4 steps">Du scan au <em class="nowrap">glow-up</em> en 4 étapes</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <h3 data-en="Scan your face">Scanne ton visage</h3>
+          <p data-en="Take 3 photos (front and profiles). The guided camera frames everything for you.">Prends 3 photos (face et profils). La caméra guidée cadre tout pour toi.</p>
+        </div>
+        <div class="step reveal">
+          <h3 data-en="Get your score">Reçois ton score</h3>
+          <p data-en="A score out of 100 broken down into skin, harmony, jawline, eyes, texture and potential.">Une note sur 100 détaillée : peau, harmonie, mâchoire, regard, texture et potentiel.</p>
+        </div>
+        <div class="step reveal">
+          <h3 data-en="Follow your plan">Suis ton plan</h3>
+          <p data-en="A skincare routine and face exercises built around your weak points.">Une routine skincare et des exercices visage construits autour de tes points faibles.</p>
+        </div>
+        <div class="step reveal">
+          <h3 data-en="Track your progress">Mesure tes progrès</h3>
+          <p data-en="Re-scan, compare your before/after photos and watch your score climb.">Refais une analyse, compare tes photos avant/après et regarde ton score monter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="label" data-en="Features">Fonctionnalités</div>
+        <h2 data-en="Everything you need to <em>level up</em>">Tout pour passer au <em>niveau supérieur</em></h2>
+      </div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M3 12h18"/></svg></div>
+          <h3 data-en="AI facial analysis">Analyse faciale IA</h3>
+          <p data-en="A precise, consistent read of your face with concrete strengths and priorities.">Une lecture précise et constante de ton visage, avec tes points forts et tes priorités.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3 data-en="24/7 AI coach">Coach IA 24/7</h3>
+          <p data-en="Ask anything about skin, grooming or your routine and get answers based on your analysis.">Pose tes questions skincare, grooming ou routine : il répond en connaissant ton analyse.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></div>
+          <h3 data-en="Product scanner">Scanner de produits</h3>
+          <p data-en="Snap a product and find out if its ingredients suit your skin.">Photographie un produit et découvre si ses ingrédients sont adaptés à ta peau.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9zM8 7h8l1 4v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-8z"/></svg></div>
+          <h3 data-en="Custom skincare routine">Routine skincare perso</h3>
+          <p data-en="Morning and evening steps adapted to your skin type and goals.">Des étapes matin et soir adaptées à ton type de peau et à tes objectifs.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M6 8h12M6 16h12M3 8h3M18 8h3M3 16h3M18 16h3"/></svg></div>
+          <h3 data-en="Face exercises">Exercices visage</h3>
+          <p data-en="Guided jawline, posture and gua sha sessions with timers.">Séances guidées jawline, posture et gua sha, avec minuteur.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3 data-en="Progress & badges">Suivi & badges</h3>
+          <p data-en="Score history, before/after photos, streaks and badges to stay consistent.">Historique de score, photos avant/après, séries et badges pour rester régulier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap privacy">
+      <div class="reveal">
+        <div class="label" data-en="Privacy">Confidentialité</div>
+        <h2 data-en="Your photos <em>stay yours.</em>">Tes photos <em>restent à toi.</em></h2>
+        <p class="intro" data-en="Your face is personal. Ascend only uses your photos to run your analysis — nothing else.">Ton visage, c'est personnel. Ascend utilise tes photos uniquement pour ton analyse — rien d'autre.</p>
+      </div>
+      <div class="checks">
+        <div class="check reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><b data-en="Never sold, never published">Jamais revendues, jamais publiées</b><span data-en="Your photos are used for your analysis only.">Tes photos servent uniquement à ton analyse.</span></div>
+        </div>
+        <div class="check reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><b data-en="Delete everything anytime">Suppression en un tap</b><span data-en="Delete your account and all your data directly from the app.">Supprime ton compte et toutes tes données directement depuis l'app.</span></div>
+        </div>
+        <div class="check reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><b data-en="GDPR compliant">Conforme RGPD</b><span><a href="/privacy" data-en="Read our privacy policy →">Lire la politique de confidentialité →</a></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="label" data-en="Pricing">Tarifs</div>
+        <h2 data-en="One plan, <em>everything included</em>">Un abonnement, <em>tout inclus</em></h2>
+        <p data-en="Full access to analyses, the coach, the scanner and every program.">Accès complet aux analyses, au coach, au scanner et à tous les programmes.</p>
+      </div>
+      <div class="plans">
+        <div class="plan reveal">
+          <h3 data-en="Monthly">Mensuel</h3>
+          <div class="price">14,99€<small data-en=" /month"> /mois</small></div>
+          <p class="per" data-en="Cancel anytime">Sans engagement</p>
+        </div>
+        <div class="plan best reveal">
+          <div class="tag" data-en="BEST VALUE · -44%">MEILLEURE OFFRE · -44%</div>
+          <h3 data-en="Yearly">Annuel</h3>
+          <div class="price">99,99€<small data-en=" /year"> /an</small></div>
+          <p class="per" data-en="That's just <b>8,33€/month</b>">Soit seulement <b>8,33€/mois</b></p>
+        </div>
+      </div>
+      <p class="fine" data-en="Auto-renewable subscription, billed through your Apple ID. You can cancel at any time in your iPhone settings, at least 24 hours before renewal.">Abonnement renouvelé automatiquement, facturé via ton identifiant Apple. Tu peux l'annuler à tout moment dans les réglages de ton iPhone, au moins 24 h avant le renouvellement.</p>
+    </div>
+  </section>
+
+  <section class="final alt">
+    <div class="wrap reveal">
+      <h2 data-en="Ready to <em>ascend?</em>">Prêt à <em>passer au niveau supérieur ?</em></h2>
+      <p data-en="Get your score in 30 seconds and start your plan today.">Découvre ton score en 30 secondes et commence ton plan dès aujourd'hui.</p>
+      <a class="btn btn-lime" href="https://apps.apple.com/app/id6790447887">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.59.68-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>
+        <span><small data-en="Download on the">Télécharger sur l'</small>App Store</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="/" class="brand"><img src="/images/logo.png" alt="">Ascend</a>
+        <p class="tagline" data-en="Maximize your looks.">Maximize your looks.</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="/privacy" data-en="Privacy policy">Politique de confidentialité</a></li>
+        <li><a href="/cgu" data-en="Terms of use">CGU</a></li>
+        <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">EULA</a></li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="mailto:ascend.app.off@gmail.com">ascend.app.off@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="copy" data-en="© 2026 Ascend. All rights reserved.">© 2026 Ascend. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nodes = document.querySelectorAll("[data-en]");
+    nodes.forEach(function (el) { el.setAttribute("data-fr", el.innerHTML); });
+    var meta = document.querySelector('meta[name="description"]');
+    var titles = { fr: document.title, en: "Ascend – Unlock your real potential" };
+
+    function setLang(lang) {
+      nodes.forEach(function (el) { el.innerHTML = el.getAttribute("data-" + lang); });
+      document.documentElement.lang = lang;
+      document.title = titles[lang];
+      document.querySelectorAll(".lang button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
       });
+      try { localStorage.setItem("ascend_site_lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.lang); });
     });
 
-    // Scroll fade-in
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 60);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-  </script>
+    var saved = null;
+    try { saved = localStorage.getItem("ascend_site_lang"); } catch (e) {}
+    var initial = saved || ((navigator.language || "fr").toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
+    if (initial !== "fr") setLang(initial);
 
+    var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 }) : null;
+    document.querySelectorAll(".reveal").forEach(function (el) {
+      if (io) io.observe(el); else el.classList.add("in");
+    });
+  })();
+</script>
 </body>
 </html>
