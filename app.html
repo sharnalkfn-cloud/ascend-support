@@ -44,11 +44,27 @@
     .store span { text-align: left; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
     .store small { display: block; font-size: 12px; font-weight: 500; opacity: .85; letter-spacing: 0; }
     .note { margin-top: 16px; font-size: 13px; color: rgba(245,246,240,0.5); }
+    /* in-app browser help (TikTok / Instagram block the App Store) */
+    .inapp { display: none; position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); right: 12px; left: 12px; z-index: 10;
+      padding: 14px 54px 14px 16px; border-radius: 18px; text-align: left; font-size: 15px; line-height: 1.4;
+      background: #C8F135; color: #0B0A13; font-weight: 700; box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .inapp b { font-weight: 800; }
+    .inapp .dots { display: inline-block; padding: 0 6px; border-radius: 8px; background: rgba(11,10,19,0.12); letter-spacing: 1px; }
+    .inapp .arrow { position: absolute; right: 14px; top: 8px; font-size: 30px; line-height: 1; animation: bob 1s ease-in-out infinite; }
+    body.is-inapp .inapp { display: block; }
+    body.is-inapp main { margin-top: 70px; }
+    .inapp.flash { animation: pulse .5s ease 2; }
+    @keyframes bob { 50% { transform: translate(3px, -4px); } }
+    @keyframes pulse { 50% { transform: scale(1.04); } }
     @keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { main { animation: none; } }
   </style>
 </head>
 <body>
+  <div class="inapp" id="inapp" role="status">
+    <span id="ia">Pour télécharger : touche <span class="dots">•••</span> en haut à droite, puis <b>« Ouvrir dans le navigateur »</b>.</span>
+    <span class="arrow" aria-hidden="true">↗</span>
+  </div>
   <main>
     <img class="logo" src="/images/logo.png" alt="Logo Ascend" width="116" height="116">
     <div class="name">Ascend</div>
@@ -60,7 +76,18 @@
     <p class="note" id="n">Gratuit · iPhone</p>
   </main>
   <script>
+    // TikTok / Instagram / Facebook in-app browsers can't open the App Store: guide people to their real browser.
+    var ua = navigator.userAgent || "";
+    var inApp = /musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|Snapchat/i.test(ua);
+    if (inApp) {
+      document.body.classList.add("is-inapp");
+      document.querySelector(".store").addEventListener("click", function () {
+        var box = document.getElementById("inapp");
+        setTimeout(function () { box.classList.remove("flash"); void box.offsetWidth; box.classList.add("flash"); }, 400);
+      });
+    }
     if (!(navigator.language || "fr").toLowerCase().startsWith("fr")) {
+      document.getElementById("ia").innerHTML = 'To download: tap <span class="dots">•••</span> at the top right, then <b>“Open in browser”</b>.';
       document.documentElement.lang = "en";
       document.title = "Ascend – Reach your real potential";
       document.getElementById("t").innerHTML = "Reach your<br><em>real potential.</em>";
