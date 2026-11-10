@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ascend – Atteins ton vrai potentiel</title>
+  <meta name="description" content="Ascend : l'IA qui analyse ton visage et te crée un plan perso.">
+  <meta property="og:title" content="Ascend – Atteins ton vrai potentiel">
+  <meta property="og:image" content="/images/logo.png">
+  <meta name="theme-color" content="#0B0A13">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      min-height: 100dvh; display: flex; align-items: center; justify-content: center;
+      padding: 32px 24px calc(32px + env(safe-area-inset-bottom, 0px));
+      font-family: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif; color: #F5F6F0; text-align: center;
+      -webkit-font-smoothing: antialiased; background: #0B0A13;
+      background-image:
+        radial-gradient(80vw 50vh at 50% 0%, rgba(88,160,24,0.50), transparent 70%),
+        radial-gradient(60vw 50vh at 110% 60%, rgba(112,40,210,0.32), transparent 70%),
+        radial-gradient(60vw 50vh at -10% 80%, rgba(0,120,150,0.28), transparent 70%);
+      background-attachment: fixed;
+    }
+    main { display: flex; flex-direction: column; align-items: center; max-width: 420px; animation: up .7s ease both; }
+    .logo { width: 116px; height: 116px; border-radius: 28px; box-shadow: 0 0 60px rgba(200,241,53,0.35), 0 20px 40px rgba(0,0,0,0.5); }
+    .name { margin-top: 20px; font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+    h1 { margin-top: 26px; font-size: clamp(38px, 11vw, 54px); font-weight: 800; line-height: 1.04; letter-spacing: -0.045em; text-wrap: balance; }
+    h1 em { font-style: normal; color: #C8F135; text-shadow: 0 0 40px rgba(200,241,53,0.35); }
+    .store {
+      margin-top: 40px; display: inline-flex; align-items: center; gap: 12px;
+      padding: 13px 28px 13px 22px; border-radius: 16px; text-decoration: none;
+      background: #000; color: #fff; border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.5); transition: transform .18s;
+    }
+    .store:active { transform: scale(0.97); }
+    .store:focus-visible { outline: 2px solid #C8F135; outline-offset: 4px; }
+    .store svg { width: 30px; height: 30px; }
+    .store span { text-align: left; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+    .store small { display: block; font-size: 12px; font-weight: 500; opacity: .85; letter-spacing: 0; }
+    .note { margin-top: 16px; font-size: 13px; color: rgba(245,246,240,0.5); }
+    @keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { main { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/images/logo.png" alt="Logo Ascend" width="116" height="116">
+    <div class="name">Ascend</div>
+    <h1 id="t">Atteins ton<br><em>vrai potentiel.</em></h1>
+    <a class="store" href="https://apps.apple.com/fr/app/ascend/id6790447887">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.59.68-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>
+      <span><small id="s">Télécharger sur l'</small>App Store</span>
+    </a>
+    <p class="note" id="n">Gratuit · iPhone</p>
+  </main>
+  <script>
+    if (!(navigator.language || "fr").toLowerCase().startsWith("fr")) {
+      document.documentElement.lang = "en";
+      document.title = "Ascend – Reach your real potential";
+      document.getElementById("t").innerHTML = "Reach your<br><em>real potential.</em>";
+      document.getElementById("s").textContent = "Download on the";
+      document.getElementById("n").textContent = "Free · iPhone";
+    }
+  </script>
+</body>
+</html>
