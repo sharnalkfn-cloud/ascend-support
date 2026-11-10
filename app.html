@@ -7,79 +7,109 @@
   <meta name="description" content="Ascend : l'IA qui analyse ton visage et te crée un plan perso.">
   <meta property="og:title" content="Ascend – Atteins ton vrai potentiel">
   <meta property="og:image" content="/images/logo.png">
-  <meta name="theme-color" content="#0B0A13">
+  <meta name="theme-color" content="#08080D">
   <link rel="icon" type="image/png" href="/images/logo.png">
   <link rel="apple-touch-icon" href="/images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root { --bg: #08080D; --lime: #C8F135; --text: #F4F5EF; --sub: rgba(244,245,239,0.58); --line: rgba(255,255,255,0.09); }
     * { box-sizing: border-box; margin: 0; }
-    html, body { height: 100%; }
+    html, body { min-height: 100%; }
     body {
-      min-height: 100dvh; display: flex; align-items: center; justify-content: center;
-      padding: 32px 24px calc(32px + env(safe-area-inset-bottom, 0px));
-      font-family: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif; color: #F5F6F0; text-align: center;
-      -webkit-font-smoothing: antialiased; background: #0B0A13;
-      background-image:
-        radial-gradient(80vw 50vh at 50% 0%, rgba(88,160,24,0.50), transparent 70%),
-        radial-gradient(60vw 50vh at 110% 60%, rgba(112,40,210,0.32), transparent 70%),
-        radial-gradient(60vw 50vh at -10% 80%, rgba(0,120,150,0.28), transparent 70%);
-      background-attachment: fixed;
+      min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: calc(28px + env(safe-area-inset-top, 0px)) 20px calc(28px + env(safe-area-inset-bottom, 0px));
+      font-family: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif; color: var(--text); text-align: center;
+      -webkit-font-smoothing: antialiased; background: var(--bg); overflow-x: hidden;
     }
-    main { display: flex; flex-direction: column; align-items: center; max-width: 420px; animation: up .7s ease both; }
-    .logo { width: 116px; height: 116px; border-radius: 28px; box-shadow: 0 0 60px rgba(200,241,53,0.35), 0 20px 40px rgba(0,0,0,0.5); }
-    .name { margin-top: 20px; font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
-    h1 { margin-top: 26px; font-size: clamp(38px, 11vw, 54px); font-weight: 800; line-height: 1.04; letter-spacing: -0.045em; text-wrap: balance; }
-    h1 em { font-style: normal; color: #C8F135; text-shadow: 0 0 40px rgba(200,241,53,0.35); }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: radial-gradient(520px 420px at 50% 0%, rgba(150,210,40,0.30), transparent 70%),
+                  radial-gradient(900px 600px at 50% 120%, rgba(150,210,40,0.08), transparent 70%);
+    }
+
+    .card {
+      position: relative; width: 100%; max-width: 380px; overflow: hidden;
+      padding: 40px 28px 0; border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+      animation: up .6s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .logo { width: 84px; height: 84px; margin: 0 auto; border-radius: 22px; display: block;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 50px rgba(200,241,53,0.28), 0 14px 30px rgba(0,0,0,0.5); }
+    .name { margin-top: 14px; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--sub); }
+    h1 { margin-top: 18px; font-size: 38px; font-weight: 800; line-height: 1.06; letter-spacing: -0.045em; text-wrap: balance; }
+    h1 em { font-style: normal; color: var(--lime); }
+    .lead { margin: 14px auto 0; max-width: 290px; font-size: 15px; line-height: 1.5; color: var(--sub); }
+
     .store {
-      margin-top: 40px; display: inline-flex; align-items: center; gap: 12px;
-      padding: 13px 28px 13px 22px; border-radius: 16px; text-decoration: none;
-      background: #000; color: #fff; border: 1px solid rgba(255,255,255,0.35);
-      box-shadow: 0 16px 44px rgba(0,0,0,0.5); transition: transform .18s;
+      margin-top: 28px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 14px 20px; border-radius: 16px; text-decoration: none;
+      background: #000; color: #fff; border: 1px solid rgba(255,255,255,0.28);
+      transition: transform .15s, border-color .15s;
     }
-    .store:active { transform: scale(0.97); }
-    .store:focus-visible { outline: 2px solid #C8F135; outline-offset: 4px; }
-    .store svg { width: 30px; height: 30px; }
-    .store span { text-align: left; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
-    .store small { display: block; font-size: 12px; font-weight: 500; opacity: .85; letter-spacing: 0; }
-    .note { margin-top: 16px; font-size: 13px; color: rgba(245,246,240,0.5); }
+    .store:hover { border-color: rgba(255,255,255,0.5); }
+    .store:active { transform: scale(0.98); }
+    .store:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .store svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .store span { text-align: left; font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+    .store small { display: block; font-size: 11.5px; font-weight: 500; opacity: .85; letter-spacing: 0; }
+    .note { margin-top: 12px; font-size: 12.5px; color: rgba(244,245,239,0.42); }
+
+    /* app preview peeking out of the bottom of the card */
+    .peek { position: relative; margin: 30px auto 0; width: 76%; height: 190px; overflow: hidden;
+      border-radius: 30px 30px 0 0; padding: 7px 7px 0; background: #1a1b20;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
+    .peek img { width: 100%; display: block; border-radius: 24px 24px 0 0; margin-top: -27%; height: auto; }
+    .peek { height: 210px; }
+    .peek::before { content: ""; position: absolute; top: 15px; left: 50%; width: 28%; height: 17px; margin-left: -14%; border-radius: 12px; background: #000; z-index: 1; }
+    .peek::after { content: ""; position: absolute; inset: auto 0 0; height: 80px; background: linear-gradient(transparent, rgba(16,16,22,0.96)); }
+
     /* in-app browser help (TikTok / Instagram block the App Store) */
-    .inapp { display: none; position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); right: 12px; left: 12px; z-index: 10;
-      padding: 14px 54px 14px 16px; border-radius: 18px; text-align: left; font-size: 15px; line-height: 1.4;
-      background: #C8F135; color: #0B0A13; font-weight: 700; box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
-    .inapp b { font-weight: 800; }
-    .inapp .dots { display: inline-block; padding: 0 6px; border-radius: 8px; background: rgba(11,10,19,0.12); letter-spacing: 1px; }
-    .inapp .arrow { position: absolute; right: 14px; top: 8px; font-size: 30px; line-height: 1; animation: bob 1s ease-in-out infinite; }
-    body.is-inapp .inapp { display: block; }
-    body.is-inapp main { margin-top: 70px; }
-    .inapp.flash { animation: pulse .5s ease 2; }
-    @keyframes bob { 50% { transform: translate(3px, -4px); } }
-    @keyframes pulse { 50% { transform: scale(1.04); } }
-    @keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { main { animation: none; } }
+    .inapp { display: none; position: fixed; z-index: 10; top: calc(10px + env(safe-area-inset-top, 0px)); left: 12px; right: 12px;
+      align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; text-align: left;
+      background: rgba(28,28,36,0.94); border: 1px solid rgba(200,241,53,0.45);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      font-size: 14px; line-height: 1.4; font-weight: 600; color: var(--text); }
+    .inapp b { color: var(--lime); font-weight: 800; }
+    .inapp .dots { display: inline-block; padding: 0 7px; border-radius: 7px; background: rgba(255,255,255,0.12); font-weight: 800; letter-spacing: 1px; }
+    .inapp .arrow { flex-shrink: 0; margin-left: auto; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--lime); color: #08080D; font-size: 18px; font-weight: 900; animation: bob 1.1s ease-in-out infinite; }
+    body.is-inapp .inapp { display: flex; }
+    body.is-inapp { padding-top: calc(96px + env(safe-area-inset-top, 0px)); }
+    .inapp.flash { animation: pulse .45s ease 2; }
+
+    @keyframes bob { 50% { transform: translate(2px, -3px); } }
+    @keyframes pulse { 50% { transform: scale(1.03); } }
+    @keyframes up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 360px) { h1 { font-size: 33px; } .card { padding: 34px 22px 0; } }
+    @media (prefers-reduced-motion: reduce) { .card, .inapp .arrow { animation: none; } }
   </style>
 </head>
 <body>
   <div class="inapp" id="inapp" role="status">
-    <span id="ia">Pour télécharger : touche <span class="dots">•••</span> en haut à droite, puis <b>« Ouvrir dans le navigateur »</b>.</span>
+    <span id="ia">Touche <span class="dots">•••</span> en haut à droite, puis <b>« Ouvrir dans le navigateur »</b> pour télécharger.</span>
     <span class="arrow" aria-hidden="true">↗</span>
   </div>
-  <main>
-    <img class="logo" src="/images/logo.png" alt="Logo Ascend" width="116" height="116">
+
+  <main class="card">
+    <img class="logo" src="/images/logo.png" alt="Logo Ascend" width="84" height="84">
     <div class="name">Ascend</div>
-    <h1 id="t">Atteins ton<br><em>vrai potentiel.</em></h1>
+    <h1 id="t">Atteins ton <em>vrai potentiel.</em></h1>
+    <p class="lead" id="l">L'IA analyse ton visage et te crée un plan rien que pour toi.</p>
     <a class="store" href="https://apps.apple.com/fr/app/ascend/id6790447887">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.59.68-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>
       <span><small id="s">Télécharger sur l'</small>App Store</span>
     </a>
     <p class="note" id="n">Gratuit · iPhone</p>
+    <div class="peek"><img id="shot" src="/images/app-fr.jpg" alt="Aperçu de l'app Ascend" width="780" height="1688"></div>
   </main>
+
   <script>
-    // TikTok / Instagram / Facebook in-app browsers can't open the App Store: guide people to their real browser.
     var ua = navigator.userAgent || "";
-    var inApp = /musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|Snapchat/i.test(ua);
-    if (inApp) {
+    if (/musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|Snapchat/i.test(ua)) {
       document.body.classList.add("is-inapp");
       document.querySelector(".store").addEventListener("click", function () {
         var box = document.getElementById("inapp");
@@ -87,12 +117,14 @@
       });
     }
     if (!(navigator.language || "fr").toLowerCase().startsWith("fr")) {
-      document.getElementById("ia").innerHTML = 'To download: tap <span class="dots">•••</span> at the top right, then <b>“Open in browser”</b>.';
       document.documentElement.lang = "en";
       document.title = "Ascend – Reach your real potential";
-      document.getElementById("t").innerHTML = "Reach your<br><em>real potential.</em>";
+      document.getElementById("t").innerHTML = "Reach your <em>real potential.</em>";
+      document.getElementById("l").textContent = "AI analyzes your face and builds a plan made just for you.";
       document.getElementById("s").textContent = "Download on the";
       document.getElementById("n").textContent = "Free · iPhone";
+      document.getElementById("shot").src = "/images/app-en.jpg";
+      document.getElementById("ia").innerHTML = 'Tap <span class="dots">•••</span> at the top right, then <b>“Open in browser”</b> to download.';
     }
   </script>
 </body>
